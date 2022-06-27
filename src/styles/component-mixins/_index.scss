@@ -1,0 +1,4 @@
+// This file enables us to @use variables and mixins within partials as a one line import.
+
+@forward "./button";
+@forward "./stocktag";

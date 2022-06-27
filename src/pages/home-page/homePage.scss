@@ -1,0 +1,26 @@
+@use "../../styles/partials/" as *;
+
+.home {
+  padding: 1.6rem 2.4rem;
+
+  &__title {
+    @include page-header;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  &__text {
+    margin: 1.2rem 0;
+    text-align: center;
+  }
+
+  &__cta-container {
+    max-width: 38rem;
+    margin: 4rem auto 0 auto;
+    padding: 0 4rem;
+  }
+
+  &__button {
+    margin-top: 2rem;
+  }
+}

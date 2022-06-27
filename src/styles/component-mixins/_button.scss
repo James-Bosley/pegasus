@@ -1,0 +1,69 @@
+@use "../partials/" as *;
+
+@mixin base-button {
+  @include flex(center, center);
+  @include button-text;
+  cursor: pointer;
+  height: 3.6rem;
+  width: 100%;
+  border: none;
+  border-radius: 1.2rem;
+
+  @include media-tablet {
+    height: 3.8rem;
+    width: unset;
+    padding: 0 1.6rem;
+  }
+}
+
+@mixin brand-button {
+  @include base-button;
+  color: $primary-color-light;
+  background-color: $primary-color-brand;
+
+  &:hover {
+    box-shadow: 1px 1px 2px $secondary-color-dark;
+  }
+
+  &:active {
+    box-shadow: none;
+    position: relative;
+    top: 2px;
+    left: 2px;
+  }
+}
+
+@mixin light-button {
+  @include base-button;
+  color: $secondary-color-dark;
+  background-color: $background-color;
+  border: 1px solid $secondary-color-light;
+
+  &:hover {
+    box-shadow: 1px 1px 2px $secondary-color-dark;
+  }
+
+  &:active {
+    box-shadow: none;
+    position: relative;
+    top: 2px;
+    left: 2px;
+  }
+}
+
+@mixin action-button {
+  @include base-button;
+  color: $primary-color-light;
+  background-color: $secondary-color-brand;
+
+  &:hover {
+    box-shadow: 1px 1px 2px $secondary-color-dark;
+  }
+
+  &:active {
+    box-shadow: none;
+    position: relative;
+    top: 2px;
+    left: 2px;
+  }
+}

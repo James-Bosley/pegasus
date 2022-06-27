@@ -1,5 +1,7 @@
-import { useState, useMemo, createContext, useEffect } from "react";
+import { useState, useMemo, createContext, useEffect, useCallback } from "react";
 import { Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import expressApi from "./util/api";
 import "./app.scss";
 
 import Header from "./components/header/Header";
@@ -11,26 +13,31 @@ import GamesAppPage from "./pages/games-app-page/GamesAppPage";
 import PickView from "./views/pick-view/PickView";
 import QueueView from "./views/queue-view/QueueView";
 import ResultsView from "./views/results-view/ResultsView";
-import ProfilePage from "./components/";
+import ProfilePage from "./pages/profile-page/ProfilePage";
 import Footer from "./components/footer/Footer";
 
-const UserContext = createContext({ userToken: "", setUserToken: () => {} });
+export const UserContext = createContext({ user: null, setUser: () => {} });
 
 const App = () => {
-  // Creates state for the user token and creates a function that returns the state and state
+  // Creates state for the user  and creates a function that returns the state and state
   // setter that is passed to the context provider for use throughout the application.
-  const [userToken, setUserToken] = useState("");
-  const userValue = useMemo(() => ({ userToken, setUserToken }), [userToken]);
+  const [user, setUser] = useState(null);
+
+  const changeUser = useCallback(async () => {
+    const { data } = await expressApi.getUser();
+    setUser(data.user);
+  }, []);
+
+  const userValue = useMemo(() => ({ user, changeUser }), [user, changeUser]);
 
   useEffect(() => {
-    if (localStorage.getItem("authToken")) {
-      setUserToken(JSON.parse(localStorage.getItem("authToken")));
-    }
-  }, []);
+    changeUser();
+  }, [changeUser]);
 
   return (
     <UserContext.Provider value={userValue}>
       <div className="app">
+        <Toaster />
         <Header />
         <main className="app__main">
           <Routes>

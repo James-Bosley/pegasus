@@ -1,0 +1,47 @@
+@use "../../styles/partials/" as *;
+
+.player {
+  @include flex(initial, center);
+  @include body-large;
+  background-color: $primary-color-light;
+  padding: 0.8rem 1.6rem;
+  border-radius: 6px;
+  box-shadow: 0 0 4px $secondary-color-dark;
+  margin: 1.6rem 0;
+
+  &__name {
+    margin-right: auto;
+  }
+
+  &__attribute {
+    &--gender {
+      @include flex(center, center);
+      font-weight: 600;
+      border-radius: 50%;
+      width: 2.8rem;
+    }
+
+    &--hand {
+      width: 40%;
+      text-align: end;
+    }
+
+    &--male {
+      color: blue;
+      border: 1px solid blue;
+    }
+
+    &--female {
+      color: #e23acc;
+      border: 1px solid #e23acc;
+    }
+  }
+
+  &--selected {
+    background-color: lightgreen;
+
+    & > * {
+      opacity: 0.7;
+    }
+  }
+}

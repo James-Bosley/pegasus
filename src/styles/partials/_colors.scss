@@ -1,7 +1,15 @@
+@use "sass:color";
 // Colors
 
 // Primary colors.
 $primary-color-dark: #13182c;
-$primary-color-mid: #5c667e;
 $primary-color-light: #ffffff;
-$primary-color-brand: #2e66e5;
+$primary-color-brand: #2c59d6;
+
+// Secondary colors.
+$secondary-color-dark: #5c667e;
+$secondary-color-light: #bdc5d5;
+$secondary-color-brand: #f8ab06;
+
+// Background colors.
+$background-color: #fafafa;

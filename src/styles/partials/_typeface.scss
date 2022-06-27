@@ -57,11 +57,11 @@ $primary-font: "Titillum", "Verdana", sans-serif;
   font-family: $primary-font;
   color: $color;
   font-weight: 600;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   line-height: 2rem;
 
   @include media-tablet {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     line-height: 2.2rem;
   }
 }
