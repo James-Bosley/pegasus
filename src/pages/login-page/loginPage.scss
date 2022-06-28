@@ -40,6 +40,8 @@
 }
 
 .form {
+  @include flex(initial, center);
+  flex-direction: column;
   &__input {
     @include text-input;
     margin-bottom: 1.6rem;

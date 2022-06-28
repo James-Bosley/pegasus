@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
-import { Navigate, Link } from "react-router-dom";
+import { Navigate, Link, useLocation } from "react-router-dom";
 import { UserContext } from "../../App";
+import toast from "react-hot-toast";
 import expressApi from "../../util/api";
 import googleIcon from "../../assets/icons/google_signin_normal.png";
 import "./loginPage.scss";
@@ -8,7 +9,11 @@ import "./loginPage.scss";
 const LoginPage = () => {
   const { user, changeUser } = useContext(UserContext);
 
-  const [formValues, setFormValues] = useState({ username: "", password: "" });
+  const location = useLocation();
+  const [formValues, setFormValues] = useState({
+    username: location.state?.email || "",
+    password: "",
+  });
 
   const handleChange = ({ target }) => {
     setFormValues(prevState => ({ ...prevState, [target.name]: target.value }));
@@ -17,9 +22,15 @@ const LoginPage = () => {
   // Saves the token to localStorage so it can be used by the game app.
   const handleSubmit = async e => {
     e.preventDefault();
-    const { data } = await expressApi.loginLocal(formValues);
-    localStorage.setItem("authToken", JSON.stringify(data.token));
-    changeUser();
+
+    try {
+      const { data } = await expressApi.loginLocal(formValues);
+      localStorage.setItem("authToken", JSON.stringify(data.token));
+      changeUser();
+      //
+    } catch (err) {
+      toast.error("Incorrect Email / Password");
+    }
   };
 
   if (user) {
@@ -32,7 +43,7 @@ const LoginPage = () => {
         <h2 className="login__title">Login</h2>
         <form className="form">
           <label className="form__label">
-            Username
+            Email Address
             <input
               type="text"
               name="username"
@@ -61,7 +72,7 @@ const LoginPage = () => {
             Log In
           </button>
           <p className="login__cta-text">OR</p>
-          <a href="http://localhost:8080/v1/login/google">
+          <a href="http://localhost:8080/v1/login/google" className="login__oauth">
             <img src={googleIcon} alt="Login with Google" className="login__oauth-icon" />
           </a>
         </div>

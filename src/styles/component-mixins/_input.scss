@@ -3,7 +3,7 @@
 @mixin text-input {
   @include flex(initial, center);
   @include body-medium;
-  height: 3.6rem;
+  height: 3.2rem;
   width: 100%;
   padding: 0 1.6rem;
   margin-top: 0.4rem;
@@ -11,7 +11,7 @@
   border-radius: 1.2rem;
 
   @include media-tablet {
-    height: 3.8rem;
+    height: 3.4rem;
   }
 
   &::placeholder {
