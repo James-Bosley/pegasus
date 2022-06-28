@@ -3,9 +3,16 @@ import { UserContext } from "../../App";
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./header.scss";
+import expressApi from "../../util/api";
 
 const Header = () => {
-  const { user } = useContext(UserContext);
+  const { user, changeUser } = useContext(UserContext);
+
+  const handleLogout = async () => {
+    localStorage.removeItem("authToken");
+    await expressApi.logout();
+    changeUser();
+  };
 
   return (
     <header className="header">
@@ -23,6 +30,9 @@ const Header = () => {
                 <NavLink to="profile" className="drop-menu__item">
                   Profile
                 </NavLink>
+                <p className="drop-menu__item" onClick={handleLogout}>
+                  Logout
+                </p>
               </>
             ) : (
               <NavLink to="login" className="drop-menu__item">

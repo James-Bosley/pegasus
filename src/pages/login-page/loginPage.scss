@@ -1,0 +1,48 @@
+@use "../../styles/partials/" as *;
+@use "../../styles/component-mixins/" as *;
+
+.login {
+  &__title {
+    @include page-header;
+    text-align: center;
+    margin-bottom: 1.6rem;
+  }
+
+  &__cta-container {
+    width: 20rem;
+    margin: 0 auto;
+  }
+
+  &__cta-text {
+    @include body-large;
+    font-weight: 600;
+    text-align: center;
+    margin: 1.6rem 0;
+  }
+
+  &__oauth-icon {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 0 4px $background-color;
+  }
+
+  &__info {
+    width: 30rem;
+    text-align: center;
+    margin-top: 1.6rem;
+
+    &--span {
+      text-decoration: underline;
+    }
+  }
+}
+
+.form {
+  &__input {
+    @include text-input;
+    margin-bottom: 1.6rem;
+    width: 30rem;
+  }
+}

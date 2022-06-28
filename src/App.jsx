@@ -1,5 +1,5 @@
 import { useState, useMemo, createContext, useEffect, useCallback } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import expressApi from "./util/api";
 import "./app.scss";
@@ -24,8 +24,13 @@ const App = () => {
   const [user, setUser] = useState(null);
 
   const changeUser = useCallback(async () => {
-    const { data } = await expressApi.getUser();
-    setUser(data.user);
+    try {
+      const { data } = await expressApi.getUser();
+      setUser(data.data.user);
+      //
+    } catch (err) {
+      setUser(null);
+    }
   }, []);
 
   const userValue = useMemo(() => ({ user, changeUser }), [user, changeUser]);
@@ -33,6 +38,14 @@ const App = () => {
   useEffect(() => {
     changeUser();
   }, [changeUser]);
+
+  // If the app loads with a token in the URL query, this is added to localStorage, as
+  // the app will have been redirected from an OAuth login.
+  const { search } = useLocation();
+  const token = new URLSearchParams(search).get("token");
+  if (token) {
+    localStorage.setItem("authToken", JSON.stringify(token));
+  }
 
   return (
     <UserContext.Provider value={userValue}>

@@ -1,7 +1,8 @@
 import { useContext, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import { UserContext } from "../../App";
 import expressApi from "../../util/api";
+import googleIcon from "../../assets/icons/google_signin_normal.png";
 import "./loginPage.scss";
 
 const LoginPage = () => {
@@ -13,6 +14,7 @@ const LoginPage = () => {
     setFormValues(prevState => ({ ...prevState, [target.name]: target.value }));
   };
 
+  // Saves the token to localStorage so it can be used by the game app.
   const handleSubmit = async e => {
     e.preventDefault();
     const { data } = await expressApi.loginLocal(formValues);
@@ -49,6 +51,8 @@ const LoginPage = () => {
               onChange={handleChange}
             />
           </label>
+        </form>
+        <div className="login__cta-container">
           <button
             className="form__submit styled-button-action"
             type="submit"
@@ -56,7 +60,18 @@ const LoginPage = () => {
           >
             Log In
           </button>
-        </form>
+          <p className="login__cta-text">OR</p>
+          <a href="http://localhost:8080/v1/login/google">
+            <img src={googleIcon} alt="Login with Google" className="login__oauth-icon" />
+          </a>
+        </div>
+        <p className="login__info">
+          Need an account? Sign up with google by clicking the icon above, or{" "}
+          <Link to="/signup" className="login__info--span">
+            Register Here
+          </Link>
+          .
+        </p>
       </div>
     </section>
   );
