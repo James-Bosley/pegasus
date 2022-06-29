@@ -34,7 +34,7 @@ const LoginPage = () => {
   };
 
   if (user) {
-    return <Navigate to={"/profile"} />;
+    return <Navigate to={"/games"} />;
   }
 
   return (

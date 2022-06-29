@@ -1,8 +1,14 @@
 import "./playerCard.scss";
 
-const PlayerCard = ({ player, selected }) => {
+const PlayerCard = ({ player, selectedPlayers, toggleSelected }) => {
+  console.log(player);
+  const selected = selectedPlayers.includes(player.id);
+
   return (
-    <div className={`player ${selected && "player--selected"}`}>
+    <div
+      className={`player ${selected && "player--selected"}`}
+      onClick={() => toggleSelected(player.id)}
+    >
       <p className="player__name">{player.display_name}</p>
       {player.gender ? (
         <p

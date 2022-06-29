@@ -12,7 +12,6 @@ import AboutPage from "./pages/about-page/AboutPage";
 import GamesAppPage from "./pages/games-app-page/GamesAppPage";
 import PickView from "./views/pick-view/PickView";
 import QueueView from "./views/queue-view/QueueView";
-import ResultsView from "./views/results-view/ResultsView";
 import ProfilePage from "./pages/profile-page/ProfilePage";
 import Footer from "./components/footer/Footer";
 
@@ -61,7 +60,6 @@ const App = () => {
             <Route path="games" element={<GamesAppPage />}>
               <Route path="pick" element={<PickView />} />
               <Route path="queue" element={<QueueView />} />
-              <Route path="complete/:id" element={<ResultsView />} />
             </Route>
             <Route path="profile" element={<ProfilePage />} />
           </Routes>
