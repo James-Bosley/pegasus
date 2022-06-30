@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { Navigate, Outlet, NavLink } from "react-router-dom";
+import { Navigate, Outlet, NavLink, useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 import { UserContext } from "../../App";
+import ReactSwitch from "react-switch";
 import "./gamesAppPage.scss";
 
 const GamesAppPage = () => {
@@ -19,20 +20,16 @@ const GamesAppPage = () => {
     return () => socket.disconnect();
   }, []);
 
-  // Example update obj:
-  //   {
-  //     type: "record-result" || "start",
-  //     payload: { win_score: 21, lose_score: 10, winningPlayers: [21], losingPlayers: [17] },
-  //   }
-
-  const handleJoin = () => {
-    socket.emit("join-session", user.id);
-    setIsActiveUser(true);
-  };
-
-  const handleLeave = () => {
-    socket.emit("leave-session", user.id);
-    setIsActiveUser(false);
+  const navigate = useNavigate();
+  const toggleUser = () => {
+    if (!isActiveUser) {
+      socket.emit("join-session", user.id);
+      setIsActiveUser(true);
+      navigate("pick");
+    } else {
+      socket.emit("leave-session", user.id);
+      setIsActiveUser(false);
+    }
   };
 
   if (!user) {
@@ -44,26 +41,21 @@ const GamesAppPage = () => {
   }
 
   return (
-    <section className="app" style={{ width: "80%" }}>
-      <div className="app__wrapper styled-container">
-        <nav className="app__nav">
-          <NavLink to="pick" className="app__nav-link">
+    <section className="game-app">
+      <div className="game-app__wrapper styled-container">
+        <label className="game-app__label">
+          <ReactSwitch onChange={toggleUser} checked={isActiveUser} />
+          <span>Join or Leave the session</span>
+        </label>
+        <nav className="game-app__nav">
+          <NavLink to="pick" className="game-app__nav-link">
             Pick
           </NavLink>
-          <NavLink to="queue" className="app__nav-link">
+          <NavLink to="queue" className="game-app__nav-link">
             Games
           </NavLink>
         </nav>
         <Outlet context={{ sessionState, socket }} />
-        {isActiveUser ? (
-          <button className="app__button styled-button-light" onClick={handleLeave}>
-            Leave Session
-          </button>
-        ) : (
-          <button className="app__button styled-button-action" onClick={handleJoin}>
-            Join Session
-          </button>
-        )}
       </div>
     </section>
   );

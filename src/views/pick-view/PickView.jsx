@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useOutletContext } from "react-router-dom";
+import { UserContext } from "../../App";
 import PlayerCard from "../../components/player-card/PlayerCard";
 import "./pickView.scss";
 
 const PickView = () => {
   const { sessionState, socket } = useOutletContext();
   const { queue } = sessionState;
+  const { user } = useContext(UserContext);
 
   const [selectedPlayers, setSelectedPlayers] = useState([]);
 
@@ -29,33 +31,32 @@ const PickView = () => {
   }, [selectedPlayers, queue]);
 
   const handleNewGame = () => {
-    if (selectedPlayers.length % 2 === 0) {
-      socket.emit("game-create", selectedPlayers, queue[0].id);
+    if (selectedPlayers.length && selectedPlayers.length % 2 === 0) {
+      socket.emit("game-create", { players: selectedPlayers, selectingPlr: user.id });
     } else {
       toast.error("Please select a vaild game");
     }
   };
 
   return (
-    <div>
+    <div className="pick">
       {queue.length > 0 ? (
         <>
-          <h3>Player Choosing</h3>
-          <div>
-            <PlayerCard
-              player={queue[0]}
-              selectedPlayers={selectedPlayers}
-              toggleSelected={toggleSelected}
-            />
-          </div>
+          <h3 className="pick__sub-header">Player Choosing</h3>
+
+          <PlayerCard
+            player={queue[0]}
+            selectedPlayers={selectedPlayers}
+            toggleSelected={toggleSelected}
+          />
         </>
       ) : (
         <p>No players are in the queue. Please join!</p>
       )}
       {queue.length > 1 && (
         <>
-          <h3>Choose From:</h3>
-          <ul>
+          <h3 className="pick__sub-header">Choose From</h3>
+          <ul className="pick__list">
             {queue.slice(1, 8).map(player => {
               return (
                 <li key={player.id}>
@@ -72,8 +73,8 @@ const PickView = () => {
       )}
       {queue.length > 9 && (
         <>
-          <h3>Waiting:</h3>
-          <ul>
+          <h3 className="pick__sub-header">Waiting</h3>
+          <ul className="pick__list">
             {queue.slice(9).map(player => {
               return (
                 <li key={player.id}>

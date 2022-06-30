@@ -1,7 +1,6 @@
 import "./playerCard.scss";
 
 const PlayerCard = ({ player, selectedPlayers, toggleSelected }) => {
-  console.log(player);
   const selected = selectedPlayers.includes(player.id);
 
   return (

@@ -1,0 +1,15 @@
+@use "../../styles/partials/" as *;
+
+.pick {
+  width: 80%;
+  margin: 0 auto;
+
+  &__sub-header {
+    @include body-large;
+    font-weight: 600;
+  }
+
+  &__list {
+    list-style: none;
+  }
+}

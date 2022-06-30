@@ -1,0 +1,39 @@
+@use "../../styles/partials/" as *;
+
+.game-app {
+  width: 80%;
+  min-height: 60vh;
+
+  @include media-tablet {
+    width: 60%;
+  }
+
+  &__nav {
+    @include flex;
+    margin-bottom: 2.4rem;
+
+    & > .active {
+      border-bottom: 2px solid $secondary-color-brand;
+    }
+  }
+
+  &__nav-link {
+    width: 50%;
+    padding: 0.8rem;
+    text-align: center;
+    @include sub-header;
+  }
+
+  &__join {
+    @include body-large;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 2rem;
+  }
+
+  &__toggle {
+    width: 3.6rem;
+    margin-right: 1.6rem;
+  }
+}
