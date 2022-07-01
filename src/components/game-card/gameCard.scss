@@ -1,0 +1,32 @@
+@use "../../styles/partials/" as *;
+@use "sass:color";
+
+.game {
+  background-color: color.adjust($primary-color-light, $alpha: -0.5);
+  box-shadow: 0 0 4px $secondary-color-dark;
+  padding: 1.6rem;
+  border-radius: 6px;
+  margin: 1.6rem auto;
+
+  &__player-container {
+    @include flex(space-between, initial, wrap);
+  }
+
+  &__player-card {
+    @include body-large;
+    padding: 0.4rem 0.8rem;
+    font-weight: 600;
+    width: 48%;
+    text-align: center;
+    border: 1px solid $secondary-color-light;
+    background-color: $background-color;
+    border-radius: 6px;
+    margin-bottom: 0.8rem;
+    box-shadow: 1px 1px 4px $secondary-color-dark;
+  }
+
+  &__selector {
+    margin: 0.4rem 0;
+    @include body-small;
+  }
+}

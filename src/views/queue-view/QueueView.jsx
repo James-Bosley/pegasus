@@ -6,24 +6,22 @@ const QueueView = () => {
   const { sessionState, socket } = useOutletContext();
   const { games } = sessionState;
 
-  // GAME START LOGIC
-
   return (
-    <div>
-      {games.length > 0 ? (
+    <div className="queue">
+      {games.on.length > 0 ? (
         <>
           <h3 className="queue__title">Games In Progress</h3>
-          {games.slice(0, 3).map(game => {
+          {games.on.map(game => {
             return <GameCard key={game.id} game={game} socket={socket} />;
           })}
         </>
       ) : (
         <p>No games have been selected.</p>
       )}
-      {games.length > 3 && (
+      {games.wait.length > 0 && (
         <>
           <h3 className="queue__title">Games Waiting</h3>
-          {games.slice(3).map(game => {
+          {games.wait.map(game => {
             return <GameCard key={game.id} game={game} />;
           })}
         </>

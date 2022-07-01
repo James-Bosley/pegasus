@@ -1,8 +1,12 @@
 @use "../../styles/partials/" as *;
 
 .pick {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
+
+  @include media-tablet {
+    width: 80%;
+  }
 
   &__sub-header {
     @include body-large;
@@ -11,5 +15,9 @@
 
   &__list {
     list-style: none;
+  }
+
+  &__button {
+    margin: 2.4rem 0;
   }
 }

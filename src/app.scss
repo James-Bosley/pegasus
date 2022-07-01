@@ -9,6 +9,8 @@
     @include flex(center, center, initial, column);
     flex-grow: 1;
     background: linear-gradient($primary-color-brand 15%, $background-color 96%);
+    position: relative;
+    top: -1px;
   }
 }
 
@@ -25,8 +27,7 @@
 }
 
 .styled-container {
-  margin-bottom: 10vh;
-  padding: 6rem 1.6rem;
+  padding: 1.6rem;
   border-radius: 6px;
   background-color: transparent;
 }

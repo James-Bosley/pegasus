@@ -1,11 +1,12 @@
 import ResultsModal from "../results-modal/ResultsModal";
 import Popup from "reactjs-popup";
+import "./gameCard.scss";
 
 const GameCard = ({ game, socket }) => {
   const { players, selected_by } = game;
 
   return (
-    <div>
+    <div className="game">
       <div className="game__player-container">
         {players.map(plr => {
           return (

@@ -147,7 +147,13 @@ const SignupPage = () => {
           <div className="form__select-container">
             <label className="form__label">
               Gender
-              <select name="gender" className="form__select" defaultValue="">
+              <select
+                name="gender"
+                className="form__select"
+                defaultValue=""
+                value={formValues.gender}
+                onChange={handleChange}
+              >
                 <option value="" disabled>
                   Please select...
                 </option>
@@ -158,7 +164,13 @@ const SignupPage = () => {
             </label>
             <label className="form__label">
               Handedness
-              <select name="gender" className="form__select" defaultValue="">
+              <select
+                name="handedness"
+                className="form__select"
+                defaultValue=""
+                value={formValues.handedness}
+                onChange={handleChange}
+              >
                 <option value="" disabled>
                   Please select...
                 </option>
@@ -166,8 +178,8 @@ const SignupPage = () => {
                 <option value="l">Left</option>
                 <option value="">Prefer not to say</option>
               </select>
-              <input type="hidden" name="auth_method" value={formValues.auth_method} />
             </label>
+            <input type="hidden" name="auth_method" value={formValues.auth_method} />
           </div>
           <button type="submit" className="signup__button styled-button-action">
             Submit

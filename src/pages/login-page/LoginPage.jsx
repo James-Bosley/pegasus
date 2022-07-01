@@ -34,7 +34,7 @@ const LoginPage = () => {
   };
 
   if (user) {
-    return <Navigate to={"/games"} />;
+    return <Navigate to={"/games/pick"} />;
   }
 
   return (
@@ -47,7 +47,7 @@ const LoginPage = () => {
             <input
               type="text"
               name="username"
-              className="form__input"
+              className="form__input form__input--login"
               value={formValues.username}
               onChange={handleChange}
             />
@@ -57,7 +57,7 @@ const LoginPage = () => {
             <input
               type="password"
               name="password"
-              className="form__input"
+              className="form__input form__input--login"
               value={formValues.password}
               onChange={handleChange}
             />

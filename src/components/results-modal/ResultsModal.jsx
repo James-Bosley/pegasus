@@ -1,6 +1,7 @@
 import { useState } from "react";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import "./resultsModal.scss";
 
 const ResultsModal = ({ close, game, socket }) => {
   const [winners, setWinners] = useState([]);
@@ -30,8 +31,18 @@ const ResultsModal = ({ close, game, socket }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    const losers = game.players.filter(player => !winners.includes(player.id));
-    socket.emit("game-update", { type: "record-result", payload: { ...scores, winners, losers } });
+    const losers = game.players
+      .filter(player => !winners.includes(player.id))
+      .map(player => player.id);
+
+    socket.emit("game-update", {
+      gameId: game.id,
+      update: {
+        type: "record-result",
+        payload: { ...scores, winningPlayers: winners, losingPlayers: losers },
+      },
+    });
+
     toast.success("Result recorded!");
     navigate("/games/pick");
     close();
@@ -46,41 +57,50 @@ const ResultsModal = ({ close, game, socket }) => {
           {game.players.map(player => {
             return (
               <label className="results__label" key={player.id}>
-                {player.display_name}
                 <input
                   type="checkbox"
+                  className="results__checkbox"
                   name={player.id}
                   checked={getChecked(player.id)}
                   onChange={handleWinners}
                 />
+                {player.display_name}
               </label>
             );
           })}
         </div>
         <h3 className="results__sub-title">Scores</h3>
-        <div className="reuslts__scores">
-          <input
-            type="number"
-            min="0"
-            name="win_score"
-            placeholder="0"
-            value={scores.win_score}
-            onChange={handleScores}
-          />
-          <input
-            type="number"
-            min="0"
-            name="lose_score"
-            placeholder="0"
-            value={scores.lose_score}
-            onChange={handleScores}
-          />
+        <div className="results__scores">
+          <label className="results__scores-label">
+            Winning Score
+            <input
+              type="number"
+              className="results__scores-input"
+              min="0"
+              name="win_score"
+              placeholder="0"
+              value={scores.win_score}
+              onChange={handleScores}
+            />
+          </label>
+          <label className="results__scores-label">
+            Losing Score
+            <input
+              type="number"
+              className="results__scores-input"
+              min="0"
+              name="lose_score"
+              placeholder="0"
+              value={scores.lose_score}
+              onChange={handleScores}
+            />
+          </label>
         </div>
         <div className="results__cta-container">
-          <button className="styled-button-light" type="button" onClick={close}>
+          <button className="results__button styled-button-light" type="button" onClick={close}>
             Cancel
           </button>
-          <button className="styled-button-action" type="submit">
+          <button className="results__button styled-button-action" type="submit">
             Submit Result
           </button>
         </div>

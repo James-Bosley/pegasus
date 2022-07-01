@@ -45,6 +45,9 @@
   &__input {
     @include text-input;
     margin-bottom: 1.6rem;
-    width: 30rem;
+
+    &--login {
+      width: 30rem;
+    }
   }
 }

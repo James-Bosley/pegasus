@@ -18,6 +18,14 @@ const expressApi = {
   addUser(user) {
     return axios.post(`${API_URL}/signup/local`, user, { withCredentials: true });
   },
+
+  editProfile(user) {
+    return axios.put(`${API_URL}/profile`, user, { withCredentials: true });
+  },
+
+  editPassword(password, newPassword) {
+    return axios.put(`${API_URL}/password`, { password, newPassword }, { withCredentials: true });
+  },
 };
 
 export default expressApi;

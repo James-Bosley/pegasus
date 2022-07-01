@@ -45,7 +45,7 @@ const GamesAppPage = () => {
       <div className="game-app__wrapper styled-container">
         <label className="game-app__label">
           <ReactSwitch onChange={toggleUser} checked={isActiveUser} />
-          <span>Join or Leave the session</span>
+          <span className="game-app__action">{isActiveUser ? "Leave" : "Join"}</span>
         </label>
         <nav className="game-app__nav">
           <NavLink to="pick" className="game-app__nav-link">

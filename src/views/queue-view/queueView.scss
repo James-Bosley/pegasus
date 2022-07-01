@@ -1,0 +1,14 @@
+@use "../../styles/partials/" as *;
+
+.queue {
+  width: 100%;
+
+  @include media-tablet {
+    width: 80%;
+  }
+
+  &__title {
+    @include body-large;
+    font-weight: 600;
+  }
+}

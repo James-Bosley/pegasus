@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import toast from "react-hot-toast";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import { UserContext } from "../../App";
 import PlayerCard from "../../components/player-card/PlayerCard";
+import toast from "react-hot-toast";
 import "./pickView.scss";
 
 const PickView = () => {
@@ -30,9 +30,11 @@ const PickView = () => {
     });
   }, [selectedPlayers, queue]);
 
+  const navigate = useNavigate();
   const handleNewGame = () => {
     if (selectedPlayers.length && selectedPlayers.length % 2 === 0) {
       socket.emit("game-create", { players: selectedPlayers, selectingPlr: user.id });
+      navigate("/games/queue");
     } else {
       toast.error("Please select a vaild game");
     }
@@ -71,6 +73,11 @@ const PickView = () => {
           </ul>
         </>
       )}
+      {queue.length > 1 && (
+        <button className="pick__button styled-button-action" onClick={handleNewGame}>
+          Create Game
+        </button>
+      )}
       {queue.length > 9 && (
         <>
           <h3 className="pick__sub-header">Waiting</h3>
@@ -88,11 +95,6 @@ const PickView = () => {
             })}
           </ul>
         </>
-      )}
-      {queue.length > 1 && (
-        <button className="styled-button-action" onClick={handleNewGame}>
-          Create Game
-        </button>
       )}
     </div>
   );
