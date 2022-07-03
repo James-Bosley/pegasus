@@ -24,6 +24,18 @@ const GamesAppPage = () => {
   const toggleUser = () => {
     if (!isActiveUser) {
       socket.emit("join-session", user.id);
+
+      socket.on("notifications-key", async key => {
+        const sw = await navigator.serviceWorker.ready;
+
+        const push = await sw.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: key,
+        });
+
+        socket.emit("notifications-start", { id: user.id, ...push });
+      });
+
       setIsActiveUser(true);
       navigate("pick");
     } else {
