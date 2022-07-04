@@ -15,32 +15,39 @@ const GamesAppPage = () => {
   useEffect(() => {
     const socket = io("http://localhost:8080", { withCredentials: true });
     socket.on("updated-session", session => setSessionState(session));
+    socket.on("notifications-key", async key => {
+      const sw = await navigator.serviceWorker.ready;
+
+      const subscription = await sw.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: key,
+      });
+
+      const asString = JSON.stringify(subscription);
+      const asObj = JSON.parse(asString);
+
+      socket.emit("notifications-start", { id: user.id, ...asObj });
+    });
     setSocket(socket);
 
     return () => socket.disconnect();
-  }, []);
+  }, [user]);
 
   const navigate = useNavigate();
-  const toggleUser = () => {
+  const toggleUser = async () => {
     if (!isActiveUser) {
       socket.emit("join-session", user.id);
-
-      socket.on("notifications-key", async key => {
-        const sw = await navigator.serviceWorker.ready;
-
-        const push = await sw.pushManager.subscribe({
-          userVisibleOnly: true,
-          applicationServerKey: key,
-        });
-
-        socket.emit("notifications-start", { id: user.id, ...push });
-      });
 
       setIsActiveUser(true);
       navigate("pick");
     } else {
       socket.emit("leave-session", user.id);
+
       setIsActiveUser(false);
+
+      const sw = await navigator.serviceWorker.ready;
+      const subscription = await sw.pushManager.getSubscription();
+      await subscription.unsubscribe();
     }
   };
 

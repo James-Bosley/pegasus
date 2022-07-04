@@ -43,7 +43,7 @@ const PickView = () => {
   return (
     <div className="pick">
       {queue.length > 0 ? (
-        <>
+        <div>
           <h3 className="pick__sub-header">Player Choosing</h3>
 
           <PlayerCard
@@ -51,9 +51,9 @@ const PickView = () => {
             selectedPlayers={selectedPlayers}
             toggleSelected={toggleSelected}
           />
-        </>
+        </div>
       ) : (
-        <p>No players are in the queue. Please join!</p>
+        <p className="pick__hold-text">No players are in the queue. Please join!</p>
       )}
       {queue.length > 1 && (
         <>
@@ -61,13 +61,12 @@ const PickView = () => {
           <ul className="pick__list">
             {queue.slice(1, 8).map(player => {
               return (
-                <li key={player.id}>
-                  <PlayerCard
-                    player={player}
-                    selectedPlayers={selectedPlayers}
-                    toggleSelected={toggleSelected}
-                  />
-                </li>
+                <PlayerCard
+                  key={player.id}
+                  player={player}
+                  selectedPlayers={selectedPlayers}
+                  toggleSelected={toggleSelected}
+                />
               );
             })}
           </ul>
@@ -84,13 +83,12 @@ const PickView = () => {
           <ul className="pick__list">
             {queue.slice(9).map(player => {
               return (
-                <li key={player.id}>
-                  <PlayerCard
-                    player={player}
-                    selectedPlayers={selectedPlayers}
-                    toggleSelected={toggleSelected}
-                  />
-                </li>
+                <PlayerCard
+                  key={player.id}
+                  player={player}
+                  selectedPlayers={selectedPlayers}
+                  toggleSelected={toggleSelected}
+                />
               );
             })}
           </ul>

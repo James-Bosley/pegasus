@@ -21,7 +21,7 @@ const HomePage = () => {
         {!user && <p className="home__text">Find out more or create an account to get started.</p>}
         <div className="home__cta-container">
           {user ? (
-            <Link to="games" className="home__button styled-button-action">
+            <Link to="games/pick" className="home__button styled-button-action">
               Go To Games
             </Link>
           ) : (

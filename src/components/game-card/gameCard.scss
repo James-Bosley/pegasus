@@ -6,7 +6,11 @@
   box-shadow: 0 0 4px $secondary-color-dark;
   padding: 1.6rem;
   border-radius: 6px;
-  margin: 1.6rem auto;
+  margin: 0 auto 1.6rem auto;
+
+  &:last-child {
+    margin-bottom: 2.4rem;
+  }
 
   &__player-container {
     @include flex(space-between, initial, wrap);

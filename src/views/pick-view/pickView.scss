@@ -11,6 +11,7 @@
   &__sub-header {
     @include body-large;
     font-weight: 600;
+    margin-bottom: 0.4rem;
   }
 
   &__list {
@@ -19,5 +20,10 @@
 
   &__button {
     margin: 2.4rem 0;
+  }
+
+  &__hold-text {
+    @include body-large;
+    text-align: center;
   }
 }

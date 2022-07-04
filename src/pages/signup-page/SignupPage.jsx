@@ -84,7 +84,7 @@ const SignupPage = () => {
       <div className="signup__wrapper styled-container">
         <h2 className="signup__title">Sign up for Pegasus</h2>
         <form className="form" onSubmit={handleSubmit}>
-          <label className="form__label">
+          <label className="form__label form__label--long">
             Email Address <span className="form__required">*</span>
             <input
               type="email"
@@ -94,7 +94,7 @@ const SignupPage = () => {
               onChange={handleChange}
             />
           </label>
-          <label className="form__label">
+          <label className="form__label form__label--long">
             First Name <span className="form__required">*</span>
             <input
               type="text"
@@ -104,7 +104,7 @@ const SignupPage = () => {
               onChange={handleChange}
             />
           </label>
-          <label className="form__label">
+          <label className="form__label form__label--long">
             Last Name <span className="form__required">*</span>
             <input
               type="text"
@@ -114,7 +114,7 @@ const SignupPage = () => {
               onChange={handleChange}
             />
           </label>
-          <label className="form__label">
+          <label className="form__label form__label--long">
             Display Name - what other users will see <span className="form__required">*</span>
             <input
               type="text"
@@ -124,7 +124,7 @@ const SignupPage = () => {
               onChange={handleChange}
             />
           </label>
-          <label className="form__label">
+          <label className="form__label form__label--long">
             Password <span className="form__required">*</span>
             <input
               type="password"
@@ -134,7 +134,7 @@ const SignupPage = () => {
               onChange={handleChange}
             />
           </label>
-          <label className="form__label">
+          <label className="form__label form__label--long">
             Confirm Password <span className="form__required">*</span>
             <input
               type="password"

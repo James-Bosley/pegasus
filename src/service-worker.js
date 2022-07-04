@@ -75,18 +75,26 @@ self.addEventListener("push", async e => {
   const options = {
     body: message.body,
     icon: "",
-    vibrate: [100, 50, 100],
+    vibrate: [500, 500, 500, 500, 1000],
     data: {
+      url: message.url,
       dateOfArrival: Date.now(),
       primaryKey: "2",
     },
-    actions: [],
+    actions: [
+      { action: "view", title: message.buttonText },
+      { action: "close", title: "Close" },
+    ],
+    requireInteraction: true,
   };
 
   e.waitUntil(self.registration.showNotification(message.title, options));
 });
 
 self.addEventListener("notificationclick", e => {
-  clients.openWindow("http://localhost3000/games/pick");
+  if (e.action !== "close") {
+    // eslint-disable-next-line no-undef
+    clients.openWindow(e.notification.data.url);
+  }
   e.notification.close();
 });

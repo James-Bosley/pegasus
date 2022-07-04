@@ -16,7 +16,7 @@ const QueueView = () => {
           })}
         </>
       ) : (
-        <p>No games have been selected.</p>
+        <p className="queue__hold-text">No games have been selected.</p>
       )}
       {games.wait.length > 0 && (
         <>

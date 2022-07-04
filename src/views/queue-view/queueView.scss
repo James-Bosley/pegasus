@@ -2,6 +2,7 @@
 
 .queue {
   width: 100%;
+  margin: 0 auto;
 
   @include media-tablet {
     width: 80%;
@@ -10,5 +11,11 @@
   &__title {
     @include body-large;
     font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  &__hold-text {
+    @include body-large;
+    text-align: center;
   }
 }

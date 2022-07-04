@@ -40,6 +40,12 @@
     border-radius: 0.6rem;
   }
 
+  &__label {
+    &--long {
+      min-width: 25rem;
+    }
+  }
+
   &__required {
     color: rgb(184, 8, 8);
   }
