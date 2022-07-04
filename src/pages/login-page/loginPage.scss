@@ -10,7 +10,7 @@
 
   &__cta-container {
     width: 20rem;
-    margin: 0 auto;
+    margin: 0.8rem auto;
   }
 
   &__cta-text {
@@ -44,10 +44,10 @@
   flex-direction: column;
   &__input {
     @include text-input;
-    margin-bottom: 1.6rem;
+    margin-bottom: 1.2rem;
 
     &--login {
-      width: 30rem;
+      width: 28rem;
     }
   }
 }

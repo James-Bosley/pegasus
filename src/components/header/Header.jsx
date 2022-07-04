@@ -24,7 +24,7 @@ const Header = () => {
             </NavLink>
             {user ? (
               <>
-                <NavLink to="games" className="drop-menu__item">
+                <NavLink to="games/pick" className="drop-menu__item">
                   Games
                 </NavLink>
                 <NavLink to="profile" className="drop-menu__item">

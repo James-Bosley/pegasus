@@ -26,6 +26,10 @@ const expressApi = {
   editPassword(password, newPassword) {
     return axios.put(`${API_URL}/password`, { password, newPassword }, { withCredentials: true });
   },
+
+  getReport() {
+    return axios.get(`${API_URL}/report`, { withCredentials: true });
+  },
 };
 
 export default expressApi;

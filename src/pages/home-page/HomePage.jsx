@@ -2,12 +2,14 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../App";
 import "./homePage.scss";
+import ShuttleAnimation from "../../components/shuttle-animation/ShuttleAnimation";
 
 const HomePage = () => {
   const { user } = useContext(UserContext);
 
   return (
     <section className="home">
+      <ShuttleAnimation />
       <div className="home__wrapper styled-container">
         <h2 className="home__title">
           Welcome{" "}
