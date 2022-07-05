@@ -15,7 +15,12 @@ const ProfilePage = () => {
   const handleDownload = async () => {
     try {
       const { data } = await expressApi.getReport();
-      window.open(`http://localhost:8080/v1/report?loc=${data.data.url}`, "_blank");
+      window.open(
+        `${process.env.REACT_APP_API || "https://gochamp-server.herokuapp.com"}/v1/report?loc=${
+          data.data.url
+        }`,
+        "_blank"
+      );
     } catch (err) {
       toast.error("Please sign in to view your report.");
       navigate("/login");

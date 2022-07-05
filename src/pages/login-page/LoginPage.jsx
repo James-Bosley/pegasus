@@ -72,7 +72,12 @@ const LoginPage = () => {
             Log In
           </button>
           <p className="login__cta-text">OR</p>
-          <a href="http://localhost:8080/v1/login/google" className="login__oauth">
+          <a
+            href={`${
+              process.env.REACT_APP_API || "https://gochamp-server.herokuapp.com"
+            }/v1/login/google`}
+            className="login__oauth"
+          >
             <img src={googleIcon} alt="Login with Google" className="login__oauth-icon" />
           </a>
         </div>

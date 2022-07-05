@@ -19,7 +19,10 @@ const GamesAppPage = () => {
       token = JSON.parse(localStorage.getItem("authToken"));
     }
 
-    const socket = io("http://localhost:8080", { query: { token }, withCredentials: true });
+    const socket = io(process.env.REACT_APP_API || "https://gochamp-server.herokuapp.com", {
+      query: { token },
+      withCredentials: true,
+    });
 
     socket.on("updated-session", session => setSessionState(session));
     socket.on("notifications-key", key => setNotificationKey(key));
