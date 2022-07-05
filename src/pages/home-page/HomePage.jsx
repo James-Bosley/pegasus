@@ -15,10 +15,10 @@ const HomePage = () => {
           Welcome{" "}
           {user
             ? `back ${user.first_name[0].toUpperCase() + user.first_name.slice(1)}`
-            : "to Pegasus"}
+            : "to GoChamp"}
         </h2>
         <p className="home__text">
-          Choose games, keep scores, and rank your performance with Pegasus!
+          Choose games, keep scores, and rank your performance with GoChamp!
         </p>
         {!user && <p className="home__text">Find out more or create an account to get started.</p>}
         <div className="home__cta-container">

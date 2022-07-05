@@ -42,7 +42,7 @@ const Header = () => {
           </BurgerMenu>
         </div>
         <Link to="/" className="header__logo-container">
-          <h1 className="header__logo">Pegasus</h1>
+          <h1 className="header__logo">GoChamp</h1>
         </Link>
         {user ? (
           <Link to="profile" className="header__user">

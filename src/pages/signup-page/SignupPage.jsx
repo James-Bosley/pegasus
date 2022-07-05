@@ -82,7 +82,7 @@ const SignupPage = () => {
   return (
     <section className="signup">
       <div className="signup__wrapper styled-container">
-        <h2 className="signup__title">Sign up for Pegasus</h2>
+        <h2 className="signup__title">Sign up for GoChamp</h2>
         <form className="form" onSubmit={handleSubmit}>
           <label className="form__label form__label--long">
             Email Address <span className="form__required">*</span>
