@@ -32,7 +32,7 @@ const expressApi = {
   },
 
   getReport() {
-    return axios.get(`${API_URL}/v1/report`, { withCredentials: true });
+    return axios.get(`${API_URL}/v1/report`, { responseType: "blob", withCredentials: true });
   },
 };
 

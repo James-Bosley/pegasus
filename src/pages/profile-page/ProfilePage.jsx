@@ -15,12 +15,14 @@ const ProfilePage = () => {
   const handleDownload = async () => {
     try {
       const { data } = await expressApi.getReport();
-      window.open(
-        `${process.env.REACT_APP_API || "https://gochamp-server.herokuapp.com"}/v1/report?loc=${
-          data.data.url
-        }`,
-        "_blank"
-      );
+      // Creates a Blob from the PDF Stream
+      const file = new Blob([data], { type: "application/pdf" });
+      // Builds a URL from the file
+      const fileURL = URL.createObjectURL(file);
+      // Open the new URL on new Window
+      const pdfWindow = window.open();
+      pdfWindow.location.href = fileURL;
+      //
     } catch (err) {
       toast.error("Please sign in to view your report.");
       navigate("/login");
