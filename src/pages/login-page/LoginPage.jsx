@@ -25,7 +25,7 @@ const LoginPage = () => {
 
     try {
       const { data } = await expressApi.loginLocal(formValues);
-      localStorage.setItem("authToken", JSON.stringify(data.token));
+      localStorage.setItem("authToken", JSON.stringify(data.data.token));
       changeUser();
       //
     } catch (err) {

@@ -9,40 +9,53 @@ const GamesAppPage = () => {
   const { user } = useContext(UserContext);
 
   const [socket, setSocket] = useState(null);
+  const [notificationKey, setNotificationKey] = useState(null);
   const [sessionState, setSessionState] = useState(null);
   const [isActiveUser, setIsActiveUser] = useState(false);
 
   useEffect(() => {
-    const socket = io("http://localhost:8080", { withCredentials: true });
+    let token = null;
+    if (localStorage.getItem("authToken")) {
+      token = JSON.parse(localStorage.getItem("authToken"));
+    }
+
+    const socket = io("http://localhost:8080", { query: { token }, withCredentials: true });
+
     socket.on("updated-session", session => setSessionState(session));
-    socket.on("notifications-key", async key => {
-      const sw = await navigator.serviceWorker.ready;
+    socket.on("notifications-key", key => setNotificationKey(key));
 
-      const subscription = await sw.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: key,
-      });
-
-      const asString = JSON.stringify(subscription);
-      const asObj = JSON.parse(asString);
-
-      socket.emit("notifications-start", { id: user.id, ...asObj });
-    });
     setSocket(socket);
 
     return () => socket.disconnect();
   }, [user]);
 
+  const getSubscription = async () => {
+    const sw = await navigator.serviceWorker.ready;
+
+    const subscription = await sw.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: notificationKey,
+    });
+
+    const asString = JSON.stringify(subscription);
+    return JSON.parse(asString);
+  };
+
   const navigate = useNavigate();
   const toggleUser = async () => {
     if (!isActiveUser) {
       socket.emit("join-session", user.id);
-
       setIsActiveUser(true);
+
+      const subscription = await getSubscription();
+      if (subscription) {
+        socket.emit("notifications-start", { id: user.id, ...subscription });
+      }
+
       navigate("pick");
+      //
     } else {
       socket.emit("leave-session", user.id);
-
       setIsActiveUser(false);
 
       const sw = await navigator.serviceWorker.ready;
