@@ -1,0 +1,73 @@
+@use "../../styles/partials/" as *;
+
+.player {
+  @include flex(initial, center);
+  @include body-large;
+  background-color: $primary-color-light;
+  padding: 0.8rem 1.6rem;
+  border-radius: 6px;
+  box-shadow: 0 0 4px $secondary-color-dark;
+  margin-bottom: 1.6rem;
+  cursor: pointer;
+
+  &:last-child {
+    margin-bottom: 2.4rem;
+  }
+
+  &__name {
+    margin-right: auto;
+  }
+
+  &__attribute {
+    &--gender {
+      @include flex(center, center);
+      font-weight: 600;
+      border-radius: 50%;
+      width: 2.8rem;
+      margin-left: 0.4rem;
+    }
+
+    &--hand {
+      width: 30%;
+      text-align: end;
+    }
+
+    &--male {
+      color: blue;
+      border: 1px solid blue;
+    }
+
+    &--female {
+      color: #e23acc;
+      border: 1px solid #e23acc;
+    }
+  }
+
+  &--selected {
+    background-color: lightgreen;
+
+    & > * {
+      font-weight: 600;
+    }
+  }
+}
+
+.wins {
+  @include flex(center, center);
+  position: relative;
+  margin-right: 0.4rem;
+
+  &__icon {
+    width: 2.6rem;
+  }
+
+  &__text {
+    @include body-small;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 0;
+    left: -1px;
+    color: $primary-color-light;
+  }
+}

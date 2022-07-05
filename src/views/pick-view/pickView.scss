@@ -1,0 +1,29 @@
+@use "../../styles/partials/" as *;
+
+.pick {
+  width: 100%;
+  margin: 0 auto;
+
+  @include media-tablet {
+    width: 80%;
+  }
+
+  &__sub-header {
+    @include body-large;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  &__list {
+    list-style: none;
+  }
+
+  &__button {
+    margin: 2.4rem 0;
+  }
+
+  &__hold-text {
+    @include body-large;
+    text-align: center;
+  }
+}

@@ -1,0 +1,38 @@
+@use "../../styles/partials/" as *;
+
+.profile {
+  &__avatar {
+    @include flex(center, center);
+    margin: 0 auto;
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+    border: 1px solid $background-color;
+    background-color: $secondary-color-light;
+  }
+
+  &__subtitle {
+    @include page-header;
+    text-align: center;
+    margin: 1.6rem 0;
+  }
+
+  &__container {
+    @include flex(space-evenly);
+  }
+
+  &__action {
+    @include body-large;
+  }
+
+  &__text {
+    width: 80%;
+    margin: 2.4rem auto;
+    text-align: center;
+  }
+
+  &__button {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
