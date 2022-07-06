@@ -12,8 +12,6 @@ html {
   // Equates 1rem with 10px.
   font-size: 62.5%;
   scroll-behavior: smooth;
-  // Prevents layout shift when a scrollbar is applied.
-  overflow: overlay;
 }
 
 body {

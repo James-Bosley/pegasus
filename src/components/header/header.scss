@@ -10,9 +10,6 @@
   &__wrapper {
     @include flex(space-between, center);
     margin: 0 auto;
-    & > * {
-      width: 33% !important;
-    }
   }
 
   &__logo {
