@@ -47,10 +47,12 @@ const ShuttleAnimation = () => {
     let mouseY = 0;
     let windowHalfX = window.innerWidth / 2;
     let windowHalfY = window.innerHeight / 2;
-    window.addEventListener("mousemove", e => {
+    const calcPosition = e => {
       mouseX = (e.clientX - windowHalfX) / 200;
       mouseY = (e.clientY - windowHalfY) / 200;
-    });
+    };
+    window.addEventListener("mousemove", calcPosition);
+    window.addEventListener("touchmove", calcPosition);
 
     // Set up and initiate animation loop.
     const animate = () => {

@@ -50,7 +50,7 @@ const Header = () => {
           </Link>
         ) : (
           <Link to="login" className="header__user">
-            Login / Signup
+            Login
           </Link>
         )}
       </div>

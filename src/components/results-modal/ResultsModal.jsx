@@ -31,9 +31,19 @@ const ResultsModal = ({ close, game, socket }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
+    if (scores.win_score < scores.lose_score || scores.win_score < 21) {
+      toast.error("Please enter a valid score");
+      return;
+    }
+
     const losers = game.players
       .filter(player => !winners.includes(player.id))
       .map(player => player.id);
+
+    if (!winners.length || winners.length !== losers.length) {
+      toast.error("Please enter a valid result");
+      return;
+    }
 
     socket.emit("game-update", {
       gameId: game.id,

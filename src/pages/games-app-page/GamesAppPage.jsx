@@ -1,9 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { Navigate, Outlet, NavLink, useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 import { UserContext } from "../../App";
 import ReactSwitch from "react-switch";
 import "./gamesAppPage.scss";
+import toast from "react-hot-toast";
 
 const GamesAppPage = () => {
   const { user } = useContext(UserContext);
@@ -13,6 +14,26 @@ const GamesAppPage = () => {
   const [sessionState, setSessionState] = useState(null);
   const [isActiveUser, setIsActiveUser] = useState(false);
 
+  const getUsersInGames = useCallback(() => {
+    if (!sessionState) return [];
+
+    const gameWaitUsers = sessionState.games.wait.flatMap(game => game.players.map(i => i.id));
+    const gameOnUsers = sessionState.games.on.flatMap(game => game.players.map(i => i.id));
+
+    return [...gameWaitUsers, ...gameOnUsers];
+  }, [sessionState]);
+
+  // Checks if a user should be flagged as active.
+  useEffect(() => {
+    if (!user || !sessionState) return;
+
+    const queueUsers = sessionState.queue.map(i => i.id);
+    if ([...queueUsers, ...getUsersInGames()].includes(user.id)) {
+      setIsActiveUser(true);
+    }
+  }, [getUsersInGames, sessionState, user]);
+
+  // Connects socket and sets up notification alerts.
   useEffect(() => {
     let token = null;
     if (localStorage.getItem("authToken")) {
@@ -58,12 +79,19 @@ const GamesAppPage = () => {
       navigate("pick");
       //
     } else {
+      if (getUsersInGames().includes(user.id)) {
+        toast.error("You cannot leave whilst picked for a game");
+        return;
+      }
+
       socket.emit("leave-session", user.id);
       setIsActiveUser(false);
 
       const sw = await navigator.serviceWorker.ready;
       const subscription = await sw.pushManager.getSubscription();
-      await subscription.unsubscribe();
+      if (subscription) {
+        await subscription.unsubscribe();
+      }
     }
   };
 
