@@ -1,5 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import { Navigate, Outlet, NavLink, useNavigate } from "react-router-dom";
+import { API_URL } from "../../util/api";
 import { io } from "socket.io-client";
 import { UserContext } from "../../App";
 import ReactSwitch from "react-switch";
@@ -40,10 +41,7 @@ const GamesAppPage = () => {
       token = JSON.parse(localStorage.getItem("authToken"));
     }
 
-    const socket = io(process.env.REACT_APP_API || "https://gochamp-server.herokuapp.com", {
-      query: { token },
-      withCredentials: true,
-    });
+    const socket = io(API_URL, { query: { token }, withCredentials: true });
 
     socket.on("updated-session", session => setSessionState(session));
     socket.on("notifications-key", key => setNotificationKey(key));

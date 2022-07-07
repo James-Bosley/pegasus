@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Navigate, Link, useLocation } from "react-router-dom";
 import { UserContext } from "../../App";
 import toast from "react-hot-toast";
-import expressApi from "../../util/api";
+import expressApi, { API_URL } from "../../util/api";
 import googleIcon from "../../assets/icons/google_signin_normal.png";
 import "./loginPage.scss";
 
@@ -72,12 +72,7 @@ const LoginPage = () => {
             Log In
           </button>
           <p className="login__cta-text">OR</p>
-          <a
-            href={`${
-              process.env.REACT_APP_API || "https://gochamp-server.herokuapp.com"
-            }/v1/login/google`}
-            className="login__oauth"
-          >
+          <a href={`${API_URL}/v1/login/google`} className="login__oauth">
             <img src={googleIcon} alt="Login with Google" className="login__oauth-icon" />
           </a>
         </div>
