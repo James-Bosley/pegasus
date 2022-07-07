@@ -19,9 +19,9 @@ const Header = () => {
       <div className="header__wrapper">
         <div className="drop-menu__container">
           <BurgerMenu className="drop-menu">
-            <NavLink to="about" className="drop-menu__item">
+            {/* <NavLink to="about" className="drop-menu__item">
               About
-            </NavLink>
+            </NavLink> */}
             {user ? (
               <>
                 <NavLink to="games/pick" className="drop-menu__item">
