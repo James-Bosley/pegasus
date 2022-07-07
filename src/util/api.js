@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const API_URL = process.env.REACT_APP_API || "https://gochamp-server.herokuapp.com";
+export const API_URL = process.env.REACT_APP_API || "https://api.gochamp.co.uk";
 
 const expressApi = {
   getUser() {
