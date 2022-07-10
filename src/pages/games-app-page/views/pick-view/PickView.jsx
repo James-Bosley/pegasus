@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useOutletContext, useNavigate } from "react-router-dom";
-import { UserContext } from "../../App";
-import PlayerCard from "../../components/player-card/PlayerCard";
+import { UserContext } from "../../../../App";
+import PlayerCard from "../../../../components/player-card/PlayerCard";
 import toast from "react-hot-toast";
 import "./pickView.scss";
 

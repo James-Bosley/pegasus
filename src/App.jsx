@@ -11,8 +11,8 @@ import SignupPage from "./pages/signup-page/SignupPage";
 import LoginPage from "./pages/login-page/LoginPage";
 import AboutPage from "./pages/about-page/AboutPage";
 import GamesAppPage from "./pages/games-app-page/GamesAppPage";
-import PickView from "./pages/games=app-page/views/pick-view/PickView";
-import QueueView from "./pages/games=app-page/views/queue-view/QueueView";
+import PickView from "./pages/games-app-page/views/pick-view/PickView";
+import QueueView from "./pages/games-app-page/views/queue-view/QueueView";
 import ProfilePage from "./pages/profile-page/ProfilePage";
 import Footer from "./components/footer/Footer";
 

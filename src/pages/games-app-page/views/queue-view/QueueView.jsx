@@ -1,5 +1,5 @@
 import { useOutletContext } from "react-router-dom";
-import GameCard from "../../components/game-card/GameCard";
+import GameCard from "../../../../components/game-card/GameCard";
 import "./queueView.scss";
 
 const QueueView = () => {
