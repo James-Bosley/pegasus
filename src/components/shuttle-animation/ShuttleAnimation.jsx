@@ -42,7 +42,7 @@ const ShuttleAnimation = () => {
     directionalLight.position.set(10, 10, 10).normalize();
     scene.add(directionalLight);
 
-    // Capture mouse position.
+    // Capture mouse or touch position.
     let mouseX = 0;
     let mouseY = 0;
     let windowHalfX = window.innerWidth / 2;

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../App";
-import "./homePage.scss";
 import ShuttleAnimation from "../../components/shuttle-animation/ShuttleAnimation";
+import "./homePage.scss";
 
 const HomePage = () => {
   const { user } = useContext(UserContext);

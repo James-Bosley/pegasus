@@ -15,11 +15,11 @@ const ProfilePage = () => {
   const handleDownload = async () => {
     try {
       const { data } = await expressApi.getReport();
-      // Creates a Blob from the PDF Stream
+      // Creates a Blob from the PDF Stream.
       const file = new Blob([data], { type: "application/pdf" });
-      // Builds a URL from the file
+      // Builds a URL from the file.
       const fileURL = URL.createObjectURL(file);
-      // Open the new URL on new Window
+      // Open the new URL on new Window.
       const pdfWindow = window.open();
       pdfWindow.location.href = fileURL;
       //
@@ -67,4 +67,5 @@ const ProfilePage = () => {
     </section>
   );
 };
+
 export default ProfilePage;

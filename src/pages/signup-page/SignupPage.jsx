@@ -71,6 +71,7 @@ const SignupPage = () => {
       navigate("/login", { state: { email: formValues.email } });
       //
     } catch (err) {
+      // Displays error messages from the server.
       setError(err.response.data.message);
     }
   };
@@ -190,4 +191,5 @@ const SignupPage = () => {
     </section>
   );
 };
+
 export default SignupPage;

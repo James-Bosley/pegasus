@@ -4,8 +4,8 @@ import { API_URL } from "../../util/api";
 import { io } from "socket.io-client";
 import { UserContext } from "../../App";
 import ReactSwitch from "react-switch";
-import "./gamesAppPage.scss";
 import toast from "react-hot-toast";
+import "./gamesAppPage.scss";
 
 const GamesAppPage = () => {
   const { user } = useContext(UserContext);
@@ -69,6 +69,7 @@ const GamesAppPage = () => {
       socket.emit("join-session", user.id);
       setIsActiveUser(true);
 
+      // Starts push notifictions specific to current session.
       const subscription = await getSubscription();
       if (subscription) {
         socket.emit("notifications-start", { id: user.id, ...subscription });
@@ -85,6 +86,7 @@ const GamesAppPage = () => {
       socket.emit("leave-session", user.id);
       setIsActiveUser(false);
 
+      // Unsubscribes notifactions on leaving session.
       const sw = await navigator.serviceWorker.ready;
       const subscription = await sw.pushManager.getSubscription();
       if (subscription) {
@@ -116,6 +118,7 @@ const GamesAppPage = () => {
             Games
           </NavLink>
         </nav>
+        {/* Component rendered at outlet is based on path. See App.jsx. */}
         <Outlet context={{ sessionState, socket }} />
       </div>
     </section>

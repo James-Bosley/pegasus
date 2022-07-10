@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// Sets URL based on environment.
 export const API_URL = process.env.REACT_APP_API || "https://api.gochamp.co.uk";
 
 const expressApi = {

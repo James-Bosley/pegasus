@@ -3,6 +3,8 @@ import Popup from "reactjs-popup";
 import "./gameCard.scss";
 
 const GameCard = ({ game, socket }) => {
+  // Socket prop is only passed to active games.
+
   const { players, selected_by } = game;
 
   return (

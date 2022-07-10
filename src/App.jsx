@@ -4,21 +4,22 @@ import { Toaster } from "react-hot-toast";
 import expressApi from "./util/api";
 import "./app.scss";
 
+// Component Imports.
 import Header from "./components/header/Header";
 import HomePage from "./pages/home-page/HomePage";
 import SignupPage from "./pages/signup-page/SignupPage";
 import LoginPage from "./pages/login-page/LoginPage";
 import AboutPage from "./pages/about-page/AboutPage";
 import GamesAppPage from "./pages/games-app-page/GamesAppPage";
-import PickView from "./views/pick-view/PickView";
-import QueueView from "./views/queue-view/QueueView";
+import PickView from "./pages/games=app-page/views/pick-view/PickView";
+import QueueView from "./pages/games=app-page/views/queue-view/QueueView";
 import ProfilePage from "./pages/profile-page/ProfilePage";
 import Footer from "./components/footer/Footer";
 
 export const UserContext = createContext({ user: null, setUser: () => {} });
 
 const App = () => {
-  // Creates state for the user  and creates a function that returns the state and state
+  // Creates state for the user and creates a function that returns the state and state
   // setter that is passed to the context provider for use throughout the application.
   const [user, setUser] = useState(null);
 

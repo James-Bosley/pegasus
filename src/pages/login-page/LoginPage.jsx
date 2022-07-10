@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { Navigate, Link, useLocation } from "react-router-dom";
 import { UserContext } from "../../App";
-import toast from "react-hot-toast";
 import expressApi, { API_URL } from "../../util/api";
+import toast from "react-hot-toast";
 import googleIcon from "../../assets/icons/google_signin_normal.png";
 import "./loginPage.scss";
 
@@ -19,7 +19,7 @@ const LoginPage = () => {
     setFormValues(prevState => ({ ...prevState, [target.name]: target.value }));
   };
 
-  // Saves the token to localStorage so it can be used by the game app.
+  // Saves the token to localStorage so it can be used by the game app for authentication.
   const handleSubmit = async e => {
     e.preventDefault();
 

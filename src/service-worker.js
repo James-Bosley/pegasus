@@ -69,7 +69,7 @@ self.addEventListener("message", event => {
   }
 });
 
-// Any other custom service worker logic can go here.
+// Custom logic for GoChamp notifications.
 self.addEventListener("push", async e => {
   const message = await e.data.json();
   const options = {
@@ -85,6 +85,7 @@ self.addEventListener("push", async e => {
       { action: "view", title: message.buttonText },
       { action: "close", title: "Close" },
     ],
+    // Prevent the notifcation from closing.
     requireInteraction: true,
   };
 

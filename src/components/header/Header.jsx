@@ -2,13 +2,14 @@ import { slide as BurgerMenu } from "react-burger-menu";
 import { UserContext } from "../../App";
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import "./header.scss";
 import expressApi from "../../util/api";
+import "./header.scss";
 
 const Header = () => {
   const { user, changeUser } = useContext(UserContext);
 
   const handleLogout = async () => {
+    // Remove JWT token from storage.
     localStorage.removeItem("authToken");
     await expressApi.logout();
     changeUser();
