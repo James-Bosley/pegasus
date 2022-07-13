@@ -1,0 +1,49 @@
+@use "../../../../styles/partials/" as *;
+@use "sass:color";
+
+.table {
+  width: 100%;
+  margin: 0 auto;
+  border-spacing: 0.5rem;
+
+  @include media-tablet {
+    width: 80%;
+  }
+
+  &__row {
+    height: 2.8rem;
+
+    &--header {
+      height: 3.8rem;
+    }
+  }
+
+  &__data {
+    text-align: center;
+
+    &--header {
+      @include body-large;
+      font-weight: 600;
+      border-bottom: 2px solid $secondary-color-brand;
+    }
+
+    &--name {
+      text-align: left;
+    }
+
+    &--rank {
+      @include body-large;
+      font-weight: 600;
+      text-align: left;
+      border-bottom: none;
+      width: 6%;
+    }
+
+    &--percent {
+      font-weight: 600;
+      width: 20%;
+      background: color.adjust($secondary-color-dark, $alpha: -0.85);
+      border-radius: 6px;
+    }
+  }
+}
