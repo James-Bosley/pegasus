@@ -13,6 +13,7 @@ import AboutPage from "./pages/about-page/AboutPage";
 import GamesAppPage from "./pages/games-app-page/GamesAppPage";
 import PickView from "./pages/games-app-page/views/pick-view/PickView";
 import QueueView from "./pages/games-app-page/views/queue-view/QueueView";
+import TableView from "./pages/games-app-page/views/table-view/TableView";
 import ProfilePage from "./pages/profile-page/ProfilePage";
 import Footer from "./components/footer/Footer";
 
@@ -61,6 +62,7 @@ const App = () => {
             <Route path="games" element={<GamesAppPage />}>
               <Route path="pick" element={<PickView />} />
               <Route path="queue" element={<QueueView />} />
+              <Route path="table" element={<TableView />} />
             </Route>
             <Route path="profile" element={<ProfilePage />} />
           </Routes>

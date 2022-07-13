@@ -5,7 +5,7 @@ import "./resultsModal.scss";
 
 const ResultsModal = ({ close, game, socket }) => {
   const [winners, setWinners] = useState([]);
-  const [scores, setScores] = useState({ win_score: 0, lose_score: 0 });
+  const [scores, setScores] = useState({ win_score: null, lose_score: null });
 
   const handleScores = ({ target }) => {
     setScores(prevState => ({ ...prevState, [target.name]: Number(target.value) }));

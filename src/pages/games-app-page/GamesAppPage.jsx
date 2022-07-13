@@ -117,6 +117,9 @@ const GamesAppPage = () => {
           <NavLink to="queue" className="game-app__nav-link">
             Games
           </NavLink>
+          <NavLink to="table" className="game-app__nav-link">
+            Table
+          </NavLink>
         </nav>
         {/* Component rendered at outlet is based on path. See App.jsx. */}
         <Outlet context={{ sessionState, socket }} />
@@ -124,4 +127,5 @@ const GamesAppPage = () => {
     </section>
   );
 };
+
 export default GamesAppPage;
