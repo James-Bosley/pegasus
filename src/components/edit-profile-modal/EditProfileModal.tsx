@@ -4,15 +4,19 @@ import toast from "react-hot-toast";
 import expressApi from "../../util/api";
 import "./editProfileModal.scss";
 
-const EditProfileModal = ({ close }) => {
-  const { user, changeUser } = useContext(UserContext);
+interface Props {
+  close: Function;
+}
+
+const EditProfileModal = ({ close }: Props): JSX.Element => {
+  const { user, changeUser }: { user: any; changeUser: Function } = useContext(UserContext);
   const [userEdits, setUserEdits] = useState(user);
 
-  const handleChange = ({ target }) => {
-    setUserEdits(prevState => ({ ...prevState, [target.name]: target.value }));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setUserEdits((prevState: Object) => ({ ...prevState, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault();
 
     try {
@@ -21,7 +25,7 @@ const EditProfileModal = ({ close }) => {
       changeUser();
       close();
       //
-    } catch (err) {
+    } catch (err: any) {
       toast.error("Error: " + err.response.data.message);
     }
   };

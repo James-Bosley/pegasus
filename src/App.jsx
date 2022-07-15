@@ -15,9 +15,9 @@ import PickView from "./pages/games-app-page/views/pick-view/PickView";
 import QueueView from "./pages/games-app-page/views/queue-view/QueueView";
 import TableView from "./pages/games-app-page/views/table-view/TableView";
 import ProfilePage from "./pages/profile-page/ProfilePage";
-import Footer from "./components/footer/Footer";
+import Footer from "./components/footer/Footer.tsx";
 
-export const UserContext = createContext({ user: null, setUser: () => {} });
+export const UserContext = createContext({ user: null, changeUser: () => {} });
 
 const App = () => {
   // Creates state for the user and creates a function that returns the state and state

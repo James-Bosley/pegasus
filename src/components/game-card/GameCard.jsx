@@ -1,4 +1,4 @@
-import ResultsModal from "../results-modal/ResultsModal";
+import ResultsModal from "../results-modal/ResultsModal.tsx";
 import Popup from "reactjs-popup";
 import "./gameCard.scss";
 

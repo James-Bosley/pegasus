@@ -3,15 +3,19 @@ import toast from "react-hot-toast";
 import expressApi from "../../util/api";
 import "./editPasswordModal.scss";
 
-const EditPasswordModal = ({ close }) => {
+interface Props {
+  close: Function;
+}
+
+const EditPasswordModal = ({ close }: Props): JSX.Element => {
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState({ main: "", check: "" });
 
-  const handleNew = ({ target }) => {
-    setNewPassword(prevState => ({ ...prevState, [target.name]: target.value }));
+  const handleNew = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setNewPassword(prevState => ({ ...prevState, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e: React.SyntheticEvent<EventTarget>): Promise<void> => {
     e.preventDefault();
 
     if (!password) {
@@ -29,7 +33,7 @@ const EditPasswordModal = ({ close }) => {
       toast.success("Password Changed");
       close();
       //
-    } catch (err) {
+    } catch (err: any) {
       toast.error("Error: " + err.response.data.message);
     }
   };
