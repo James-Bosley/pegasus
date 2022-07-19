@@ -64,6 +64,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-burger-menu": "^2.8.3",
     "jest": "^28.1.1"
   }
 }

@@ -5,10 +5,10 @@ import { Link, NavLink } from "react-router-dom";
 import expressApi from "../../util/api";
 import "./header.scss";
 
-const Header = () => {
+const Header = (): JSX.Element => {
   const { user, changeUser } = useContext(UserContext);
 
-  const handleLogout = async () => {
+  const handleLogout = async (): Promise<void> => {
     // Remove JWT token from storage.
     localStorage.removeItem("authToken");
     await expressApi.logout();
@@ -58,4 +58,5 @@ const Header = () => {
     </header>
   );
 };
+
 export default Header;
