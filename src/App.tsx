@@ -15,11 +15,11 @@ import PickView from "./pages/games-app-page/views/pick-view/PickView";
 import QueueView from "./pages/games-app-page/views/queue-view/QueueView";
 import TableView from "./pages/games-app-page/views/table-view/TableView";
 import ProfilePage from "./pages/profile-page/ProfilePage";
-import Footer from "./components/footer/Footer.tsx";
+import Footer from "./components/footer/Footer";
 
 export const UserContext = createContext({ user: null, changeUser: () => {} });
 
-const App = () => {
+const App = (): JSX.Element => {
   // Creates state for the user and creates a function that returns the state and state
   // setter that is passed to the context provider for use throughout the application.
   const [user, setUser] = useState(null);
